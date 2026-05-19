@@ -47,7 +47,11 @@ exports.criar = async (req, res) => {
         res.status(201).json(novoDoce[0]);
     } catch (erro) {
         console.error(erro);
-        res.status(500).json({ erro: 'Erro ao salvar o doce no banco.' });
+        res.status(500).json({ 
+            erro: 'Erro ao salvar o doce no banco.',
+            detalhes: erro.message, // <-- Adicione isso aqui
+            codigoBanco: erro.code  // <-- E isso aqui (ajuda muito no Postgres)
+        });
     }
 };
 
